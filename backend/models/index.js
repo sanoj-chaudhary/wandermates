@@ -3,18 +3,21 @@ var userModel = require("./users");
 var locationModel = require("./locations");
 var statesModel = require("./states");
 var cityModel = require("./cities");
+var userpostModel = require("./user_post");
 
 function initModels(sequelize) {
   const Users = userModel(sequelize, Sequelize);
   const Locations = locationModel(sequelize, Sequelize);
   const States = statesModel(sequelize, Sequelize);
   const City = cityModel(sequelize, Sequelize);
+  const UserPost = userpostModel(sequelize, Sequelize);
   
   return {
     Users,
     Locations,
     States,
-    City
+    City,
+    UserPost
   };
 }
 
@@ -32,4 +35,3 @@ const sequelize = new Sequelize(process.env.MYSQL_DB,process.env.MYSQL_USER, pro
 
 module.exports = initModels(sequelize);
 module.exports.sequelize = sequelize;
-module.exports.bank_code_type_options = ["DSA", "Connector", "Agents", "API", "UTM"];
