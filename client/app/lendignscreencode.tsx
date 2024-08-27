@@ -6,7 +6,7 @@ import { Button } from 'react-native-paper';
 const LandingPage = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1, backgroundColor: '#d9dadb' }}>
         {/* Header Section */}
         <View style={{ padding: 20 }}>
           <Text style={{ fontSize: 24 }}>Hello</Text>
@@ -43,7 +43,7 @@ const LandingPage = () => {
         </ScrollView>
 
         {/* Buttons Section */}
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 20 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 20 ,  margin : 10 }}>
           <TouchableOpacity style={{ flex: 1, marginRight: 10, backgroundColor: '#FF7F50', padding: 15, borderRadius: 10 }}>
             <Text style={{ textAlign: 'center', color: '#fff' }}>New Create</Text>
           </TouchableOpacity>
@@ -53,10 +53,10 @@ const LandingPage = () => {
         </View>
 
         {/* Cards Section */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginLeft: 20 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {/* Each Card */}
-          {Array.from({ length: 3 }).map((_, index) => (
-            <View key={index} style={{ backgroundColor: '#fff', borderRadius: 10, padding: 10, marginRight: 20, width: 200 }}>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <View key={index} style={[styles.cardContainer, { marginRight: 5 }]}>
               <Image 
                 source={{ uri: 'https://via.placeholder.com/300x200' }} 
                 style={{ width: '100%', height: 120, borderRadius: 10 }}
@@ -90,12 +90,12 @@ const LandingPage = () => {
         </View>
 
         {/* Footer Section */}
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 20, borderTopWidth: 1, borderColor: '#E0E0E0' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 20, borderTopWidth: 1, borderColor: '#E0E0E0' }}>
           <Icon name="home-outline" size={30} color="#FF7F50" />
           <Icon name="compass-outline" size={30} color="#A0A0A0" />
           <Icon name="notifications-outline" size={30} color="#A0A0A0" />
           <Icon name="person-outline" size={30} color="#A0A0A0" />
-        </View>
+      </View>
       </View>
 
       <View style={styles.footer}>
@@ -148,6 +148,25 @@ const styles = StyleSheet.create({
   footerText: {
     color: '#FF8C00', // Light Orange text
     fontSize: 14,
+  },
+   cardContainer: {
+    margin : 10,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 10,
+    width: 150,
+    // Shadow for iOS
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    // Shadow for Android
+    elevation: 10,
+  },
+  cardImage: {
+    width: '100%',
+    height: 120,
+    borderRadius: 10,
   },
 });
 
