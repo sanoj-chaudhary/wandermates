@@ -6,10 +6,11 @@ const { check, validationResult } = require('express-validator');
 class UserController {
     static async addUsers(req, res, next) {
         try {
-            const validApiKey = process.env.API_KEY;
-            if (req.headers.apikey !== validApiKey) {
-                return res.status(401).json({ status: false, error: "Unauthorized access" });
-            }
+            console.log(req.body);
+            // const validApiKey = process.env.API_KEY;
+            // if (req.headers.apikey !== validApiKey) {
+            //     return res.status(401).json({ status: false, error: "Unauthorized access" });
+            // }
 
             // Validate request body
             await check('name', 'Name is required').notEmpty().run(req);

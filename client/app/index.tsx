@@ -1,46 +1,65 @@
+import { router } from 'expo-router';
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { Button } from 'react-native-paper';
-
-const LandingPage = () => {
+import { View, StyleSheet, ImageBackground, ScrollView, Image,Button as NativeButtion } from 'react-native';
+import { Text, Button, Card } from 'react-native-paper';
+// import Header from '@/components/Header';
+const LandingPage = ({navigation}:any) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.heroSection}>
-        <Image
-          source={{ uri: 'https://your-image-url.com/hero-image.jpg' }}
-          style={styles.heroImage}
-        />
-        <Text style={styles.heroTitle}>Explore the World with Wander Mate</Text>
-        <Text style={styles.heroSubtitle}>Your Journey Starts Here</Text>
-        <Button mode="contained" style={styles.ctaButton} onPress={() => console.log('Explore Now')}>
-          Book Now
+    
+      <View>
+    </View>
+      {/* Hero Section */}
+      <ImageBackground
+        source={require('./../assets/images/background.webp')} // Replace with your image path
+        style={styles.hero}
+      >
+        <Text style={styles.heroTitle}>Plan Your Perfect Trip</Text>
+        <Button mode="contained" style={styles.heroButton} onPress={() => router.push('/login')}>
+          Get Started
         </Button>
-      </View>
+      </ImageBackground>
 
-      <View style={styles.featuresSection}>
+      {/* Features Section */}
+      <View style={styles.features}>
         <Text style={styles.sectionTitle}>Why Choose Us?</Text>
-        <View style={styles.feature}>
-          <Text style={styles.featureTitle}>Curated Experiences</Text>
-          <Text style={styles.featureDescription}>
-            Handpicked destinations and activities to make your trip unforgettable.
-          </Text>
-        </View>
-        <View style={styles.feature}>
-          <Text style={styles.featureTitle}>Seamless Booking</Text>
-          <Text style={styles.featureDescription}>
-            Easy and secure booking process with instant confirmations.
-          </Text>
-        </View>
-        <View style={styles.feature}>
-          <Text style={styles.featureTitle}>24/7 Support</Text>
-          <Text style={styles.featureDescription}>
-            Our team is here to help you anytime, anywhere.
-          </Text>
-        </View>
+        <Card style={styles.card}>
+          <Card.Content>
+            <Image source={require('./../assets/images/background.webp')} style={styles.featureImage} />
+            <Text style={styles.featureTitle}>Feature 1</Text>
+            <Text style={styles.featureDescription}>
+              Description of why this feature is beneficial for the user.
+            </Text>
+          </Card.Content>
+        </Card>
+
+        <Card style={styles.card}>
+          <Card.Content>
+            <Image source={require('./../assets/images/background.webp')} style={styles.featureImage} />
+            <Text style={styles.featureTitle}>Feature 2</Text>
+            <Text style={styles.featureDescription}>
+              Description of why this feature is beneficial for the user.
+            </Text>
+          </Card.Content>
+        </Card>
+
+        <Card style={styles.card}>
+          <Card.Content>
+            <Image source={require('./../assets/images/background.webp')} style={styles.featureImage} />
+            <Text style={styles.featureTitle}>Feature 3</Text>
+            <Text style={styles.featureDescription}>
+              Description of why this feature is beneficial for the user.
+            </Text>
+          </Card.Content>
+        </Card>
       </View>
 
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2024 Wander Mate. All rights reserved.</Text>
+      {/* Call to Action Section */}
+      <View style={styles.cta}>
+        <Text style={styles.ctaTitle}>Ready to Explore?</Text>
+        <Button mode="contained" style={styles.ctaButton} onPress={() => console.log('Explore Pressed')}>
+          Start Now
+        </Button>
       </View>
     </ScrollView>
   );
@@ -49,73 +68,70 @@ const LandingPage = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#FFFFFF', // White background
-    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  hero: {
+    height: 300,
     justifyContent: 'center',
-  },
-  heroSection: {
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#FF8C00',  // Light Orange background
-    width: '100%',
-  },
-  heroImage: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover',
+    backgroundColor: '#FF8C00', // Fallback color
   },
   heroTitle: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
-    color: '#000000', // Black text
-    marginTop: 20,
+    color: '#fff',
     textAlign: 'center',
-  },
-  heroSubtitle: {
-    fontSize: 18,
-    color: '#000000', // Black text
-    marginTop: 10,
     marginBottom: 20,
-    textAlign: 'center',
   },
-  ctaButton: {
-    backgroundColor: '#000000', // Black button
-    color: '#FFFFFF', // White text on the button
-    marginTop: 20,
+  heroButton: {
+    backgroundColor: '#000',
+    paddingHorizontal: 30,
   },
-  featuresSection: {
+  features: {
     padding: 20,
-    width: '100%',
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: '#FF8C00', // Light Orange text
-    marginBottom: 20,
+    color: '#FF8C00',
     textAlign: 'center',
-  },
-  feature: {
     marginBottom: 20,
+  },
+  card: {
+    marginBottom: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+  },
+  featureImage: {
+    width: '100%',
+    height: 150,
+    marginBottom: 15,
+    borderRadius: 10,
   },
   featureTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000000', // Black text
-    marginBottom: 5,
+    color: '#333',
+    marginBottom: 10,
   },
   featureDescription: {
     fontSize: 16,
-    color: '#555555', // Grey text for subtlety
+    color: '#666',
   },
-  footer: {
+  cta: {
     padding: 20,
-    backgroundColor: '#000000', // Black background
-    width: '100%',
+    
     alignItems: 'center',
   },
-  footerText: {
-    color: '#FF8C00', // Light Orange text
-    fontSize: 14,
+  ctaTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 20,
+  },
+  ctaButton: {
+    backgroundColor: '#000',
+    paddingHorizontal: 30,
   },
 });
 
