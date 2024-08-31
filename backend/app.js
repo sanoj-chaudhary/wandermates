@@ -13,7 +13,6 @@ sequelize.sync({ force: false, alter: true, logging: false })
 var indexRouter = require('./src/routes/index');
 var usersRouter = require('./src/routes/users');
 var apiRouter = require('./src/routes/apiRoutes');
-
 var app = express();
 const corsOptions = {
   origin: ['http://localhost:8081'],

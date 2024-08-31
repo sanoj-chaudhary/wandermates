@@ -1,7 +1,74 @@
 doctype html
-html
+html(lang='en')
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    meta(name='description', content='Providing wandermates Api Managment')
+    meta(name='author', content='Rishabh')
+    meta(name='keywords', content='wandermates')
+    title=' - wandermates'
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin='')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css')
+    link(href='https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='/stylesheets/admin/core.css')
+    link(rel='stylesheet', href='/stylesheets/admin/iconfont.css')
+    link(rel='stylesheet', href='/stylesheets/admin/flag-icon.min.css')
+    link(rel='stylesheet', href='/stylesheets/admin/style.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css')
+    link(rel='shortcut icon', href='/favicon.png')
+    block stylesheet
   body
-    block content
+    .main-wrapper
+      .horizontal-menu
+        nav.navbar.top-navbar
+          .container
+            .navbar-content
+              a.navbar-brand(href='#')
+               img(src='/logo.png', width='50' height='50')
+              ul.navbar-nav
+                li.nav-item.dropdown
+                  a#profileDropdown.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                   i.me-2.icon-md(data-feather='user')
+                  .dropdown-menu.p-0(aria-labelledby='profileDropdown')
+                    .d-flex.flex-column.align-items-center.border-bottom.px-5.py-3
+                      .mb-3
+                        i.me-2.icon-md(data-feather='user')
+                      .text-center
+                        p.tx-16.fw-bolder Admin
+                        p.tx-12.text-muted admin@wandermates.in
+                    ul.list-unstyled.p-1
+                      li.dropdown-item.py-2
+                        a.text-body.ms-0(href='/admin/logout')
+                          i.me-2.icon-md(data-feather='log-out')
+                          span Log Out
+              button.navbar-toggler.navbar-toggler-right.d-lg-none.align-self-center(type='button', data-toggle='horizontal-menu-toggle')
+                i(data-feather='menu')
+        nav.bottom-navbar
+          .container
+            ul.nav.page-navigation
+                li.nav-item
+                  a.nav-link(href='/admin')
+                    i.link-icon(data-feather='home')
+                    span.menu-title Dashboard
+                li.nav-item
+                  a.nav-link(href='/admin/locations')
+                    i.link-icon(data-feather='map-pin')
+                    span.menu-title Location
+      .page-wrapper
+        .page-content
+          block content
+        footer.footer.border-top
+          .container.d-flex.flex-column.flex-md-row.align-items-center.justify-content-between.py-3.small
+            p.text-muted.mb-1.mb-md-0 Copyright &copy; 2024
+              a(href='https://wandermates.in', target='_blank')  wandermates
+    script(src='/javascripts/admin/core.js')
+    script(src='/javascripts/admin/feather.min.js')
+    script(src='/javascripts/admin/template.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js')
+    script(src='/javascripts/admin/inputSelect.js')   
+    block script
+    

@@ -7,17 +7,25 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     },
-    name: {
-      type: DataTypes.STRING(255),
+    description: {
+      type: DataTypes.TEXT,
       allowNull: true
     },
     city_id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'cities',
+          key: 'id'
+        }
     },
     state_id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'states',
+          key: 'id'
+        }
     },
     images : {
       type: DataTypes.TEXT,
@@ -38,6 +46,20 @@ module.exports = function (sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name : 'fk_locations_cities1_idx',
+        using: "BTREE",
+        fields: [
+          { name: "city_id"}
+        ]
+      },
+      {
+        name : 'fk_locations_states1_idx',
+        using: "BTREE",
+        fields: [
+          { name: "state_id"}
         ]
       }
     ]

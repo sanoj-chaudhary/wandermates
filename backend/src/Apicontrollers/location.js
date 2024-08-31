@@ -1,9 +1,9 @@
-const { States , City } = require('./../../models/index');
+const { States , City, Locations } = require('./../../models/index');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
 const { check, validationResult } = require('express-validator');
 
-class Locations {
+class ApiLocations {
     static async getState (req, res, next) {
         try {
             const data = await States.findAll({
@@ -66,14 +66,16 @@ class Locations {
             if(req.query.name){
                 where.name = { [Op.like]: `%${req.query.name}%` };
             }
-            const data = await Locations.findAll({
+            const getlocationData = await Locations.findAll({
+                raw : true,
                 where : where,
-                attributes : ['id','name','state_id']
-            })
+                include: [{model: States, as : 'States',  attributes: ['id', 'name']}, {model: City, as : 'City', attributes: ['id', 'name']}],
+                order: [['id', 'DESC']]
+            });
             res.status(200).json({
                 status : true,
-                messase : 'success',
-                data
+                message : 'success',
+                data : getlocationData
             })
         }catch (err) {
             console.log(err);
@@ -85,4 +87,4 @@ class Locations {
     }
 }
 
-module.exports = Locations;
+module.exports = ApiLocations;

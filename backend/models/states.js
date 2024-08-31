@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define('states', {
     id: {
       autoIncrement: true,
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
