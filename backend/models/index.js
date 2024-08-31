@@ -4,7 +4,6 @@ var locationModel = require("./locations");
 var statesModel = require("./states");
 var cityModel = require("./cities");
 var userpostModel = require("./user_post");
-
 function initModels(sequelize) {
   const Users = userModel(sequelize, Sequelize);
   const Locations = locationModel(sequelize, Sequelize);
@@ -12,6 +11,8 @@ function initModels(sequelize) {
   const City = cityModel(sequelize, Sequelize);
   const UserPost = userpostModel(sequelize, Sequelize);
   
+  Locations.belongsTo(States, {as : 'States', foreignKey : 'state_id'});
+  Locations.belongsTo(City, {as : 'City', foreignKey : 'city_id'});
   return {
     Users,
     Locations,
@@ -21,7 +22,7 @@ function initModels(sequelize) {
   };
 }
 
-const sequelize = new Sequelize(process.env.MYSQL_DB,process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
+const sequelize = new Sequelize('wandermates','root', process.env.MYSQL_PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
